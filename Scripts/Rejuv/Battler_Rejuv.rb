@@ -206,6 +206,10 @@ class PokeBattle_Battler
         case @crested
         when :AURORUS
           @type1 = :DRAGON
+        when :HELIOLISK
+          @type2 = :WATER if @ability = :DRYSKIN
+          @type2 = :ROCK if @ability = :SANDVEIL
+          @type2 = :FIRE if @ability = :SOLARPOWER
         end
       end
       

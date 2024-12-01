@@ -10045,7 +10045,7 @@ ITEMHASH = {
 	:noUse => true,
 },
 :KLINCREST => {
-	:ID => 1900,
+	:ID => 1900, #(Victory) then I guess all my crests will go from 1900 onwards to prevent conflicts :)
 	:name => "Klinklang Crest",
 	:desc => "Adds half of Klinklang's Attack to its Special Attack and boosts its Accuracy by 50%.",
 	:price => 0,
@@ -10071,3 +10071,13 @@ ITEMHASH = {
 	:noUseInBattle => true,
 	:noUse => true,
 },
+:HELIOCREST => {
+	:ID => 1903,
+	:name => "Heliolisk Crest",
+	:desc => "Replaces Normal-type with Ability-based type. Normal-type moves become Ability-based type and are boosted by 20%.",
+	:price => 0,
+	:crest => true,
+	:noUseInBattle => true,
+	:noUse => true,
+},
+}

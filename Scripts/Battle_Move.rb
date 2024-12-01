@@ -183,6 +183,12 @@ class PokeBattle_Move
             when 2  then type=:GROUND if type==:NORMAL
             when 3  then type=:ICE    if type==:NORMAL 
           end
+        when :HELIOLISK
+          case @ability
+            when :DRYSKIN then type=:WATER if type==:NORMAL
+            when :SANDVEIL then type=:ROCK if type==:NORMAL
+            when :SOLARPOWER then type=:FIRE if type==:NORMAL
+          end
     end
     if (attacker.effects[:Electrify] || type == :NORMAL && @battle.state.effects[:IonDeluge]) && !@zmove
       type=(:ELECTRIC)
@@ -505,7 +511,7 @@ class PokeBattle_Move
       mod1=2 if (otype1 == :GHOST) && (atype == :NORMAL)
       mod2=2 if (otype2 == :GHOST) && (atype == :NORMAL)
     end
-    if [:SAWSBUCK,:SIMISAGE,:SIMISEAR,:SIMISAGE].include?(attacker.crested)
+    if [:SAWSBUCK,:SIMISAGE,:SIMISEAR,:SIMISAGE,:HELIOLISK].include?(attacker.crested)
         mod1=2 if (otype1 == :GHOST) && (atype == :NORMAL)
         mod2=2 if (otype2 == :GHOST) && (atype == :NORMAL)
     end
@@ -647,7 +653,7 @@ class PokeBattle_Move
       mod2=2 if (otype2 == :GHOST) && (atype == :NORMAL)
     end
     if attacker.crested
-      if [:SAWSBUCK,:SIMISAGE,:SIMISEAR,:SIMISAGE,:LUXRAY].include?(attacker.species)
+      if [:SAWSBUCK,:SIMISAGE,:SIMISEAR,:SIMISAGE,:LUXRAY,:HELIOLISK].include?(attacker.species)
         mod1=2 if (otype1 == :GHOST) && (atype == :NORMAL)
         mod2=2 if (otype2 == :GHOST) && (atype == :NORMAL)
       end
@@ -1567,11 +1573,17 @@ class PokeBattle_Move
       when :LUXRAY then basemult *= 1.2 if @type == :NORMAL && type == :ELECTRIC
       when :SAWSBUCK  
         case attacker.form
-        when 0 then basemult*=1.2 if @type == :NORMAL && type == :WATER
-        when 1 then basemult*=1.2 if @type == :NORMAL && type == :FIRE
-        when 2 then basemult*=1.2 if @type == :NORMAL && type == :GROUND
-        when 3 then basemult*=1.2 if @type == :NORMAL && type == :ICE
+         when 0 then basemult*=1.2 if @type == :NORMAL && type == :WATER
+         when 1 then basemult*=1.2 if @type == :NORMAL && type == :FIRE
+         when 2 then basemult*=1.2 if @type == :NORMAL && type == :GROUND
+         when 3 then basemult*=1.2 if @type == :NORMAL && type == :ICE
         end
+      when :HELIOLISK
+        case @ability
+         when :DRYSKIN then basemult*=1.2 if @type == :NORMAL && type == :WATER
+         when :SANDVEIL then basemult*=1.2 if @type == :NORMAL && type == :ROCK
+         when :SOLARPOWER then basemult*1.2 if @type == :NORMAL && type == :FIRE
+        end 
       #Fossil crest BOOSTS
       when :AURORUS then basemult*=1.2 if @type == :ROCK && type == :DRAGON
       #end fossil crests
