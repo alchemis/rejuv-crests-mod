@@ -2976,9 +2976,11 @@ class PokeBattle_Battle
       if pkmn.pbOwnSide.effects[:StealthRock]
         if pkmn.ability != :MAGICGUARD && !(pkmn.ability == :WONDERGUARD && @battle.FE == :COLOSSEUM) && !pkmn.hasWorkingItem(:HEAVYDUTYBOOTS)
           atype = :ROCK
+          atype = pkmn.pbOwnSide.effects[:StealthRock] if pkmn.pbOwnSide.effects[:StealthRock] != true #could move this line down to make it take precedence over fields
           atype = @field.getRoll if @field.effect == :CRYSTALCAVERN
           atype = :FIRE if @field.effect == :VOLCANICTOP || @field.effect == :INFERNAL || (Rejuv && @field.effect == :DRAGONSDEN)
           atype = :POISON if @field.effect == :CORRUPTED
+          
           eff=PBTypes.twoTypeEff(atype,pkmn.type1,pkmn.type2)
           if @field.effect == :INVERSE
             switcheff = { 16 => 1, 8 => 2, 4 => 4, 2 => 8, 1 => 16, 0 => 16}

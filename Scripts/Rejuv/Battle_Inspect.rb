@@ -363,7 +363,7 @@ def pbShowBattleStats(pkmn)
   report.push(_INTL("Mud Sport: {1} turns",@battle.state.effects[:MudSport])) if @battle.state.effects[:MudSport]>0
   report.push(_INTL("Spikes: {1} layers",pkmn.pbOwnSide.effects[:Spikes])) if pkmn.pbOwnSide.effects[:Spikes]>0
   report.push(_INTL("Toxic Spikes: {1} layers",pkmn.pbOwnSide.effects[:ToxicSpikes])) if pkmn.pbOwnSide.effects[:ToxicSpikes]>0
-  report.push(_INTL("Stealth Rock active")) if pkmn.pbOwnSide.effects[:StealthRock]
+  report.push(_INTL("Stealth Rock type: {1}",pkmn.pbOwnSide.effects[:StealthRock])) if pkmn.pbOwnSide.effects[:StealthRock]
   report.push(_INTL("Sticky Web active")) if pkmn.pbOwnSide.effects[:StickyWeb]
   report.push()
   report.push(_INTL("Ability: {1}",pkmn.ability.nil? ? "Ability Negated" : getAbilityName(shownmon.ability)))

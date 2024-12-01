@@ -7550,6 +7550,8 @@ end
 ################################################################################
 # Entry hazard.  Lays stealth rocks on the opposing side. (Stealth Rock / Stone Axe)
 ################################################################################
+#Crests mod change: Stealth rocks can now be any type. The type is stored in the same value by setting it to that type instead of true
+#Symbols are truthy, so this shouldn't break anything
 class PokeBattle_Move_105 < PokeBattle_Move
   def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
     return super(attacker,opponent,hitnum,alltargets,showanimation) if @basedamage>0
@@ -7559,7 +7561,7 @@ class PokeBattle_Move_105 < PokeBattle_Move
     end
     pbShowAnimation(@move,attacker,opponent,hitnum,alltargets,showanimation)
     if @battle.FE == :CLOUDS
-      attacker.pbOwnSide.effects[:StealthRock]=true
+      attacker.pbOwnSide.effects[:StealthRock]=pbType(attacker)
       @battle.pbDisplay(_INTL("... but the clouds bounced the Stealth Rocks back!"))
       if @battle.pbIsOpposing?(attacker.index)
         @battle.pbDisplay(_INTL("Pointed stones float in the air around your foe's team!"))
@@ -7572,7 +7574,7 @@ class PokeBattle_Move_105 < PokeBattle_Move
       next if !(attacker.pbIsOpposing?(i))
       if (@battle.battlers[i].ability == :MAGICBOUNCE && !PBStuff::TWOTURNMOVE.include?(@battle.battlers[i].effects[:TwoTurnAttack])) || 
         (@battle.battlers[i]).effects[:MagicCoat]
-         attacker.pbOwnSide.effects[:StealthRock]=true
+         attacker.pbOwnSide.effects[:StealthRock]=pbType(attacker)
          @battle.pbDisplay(_INTL("{1} bounced the Stealth Rocks back!",(@battle.battlers[i]).pbThis))
          if @battle.pbIsOpposing?(attacker.index)
             @battle.pbDisplay(_INTL("Pointed stones float in the air around your foe's team!"))
@@ -7583,7 +7585,7 @@ class PokeBattle_Move_105 < PokeBattle_Move
        break
       end
     end
-    attacker.pbOpposingSide.effects[:StealthRock]=true
+    attacker.pbOpposingSide.effects[:StealthRock]=pbType(attacker)
     if !@battle.pbIsOpposing?(attacker.index)
       @battle.pbDisplay(_INTL("Pointed stones float in the air around your foe's team!"))
     else
@@ -7594,7 +7596,7 @@ class PokeBattle_Move_105 < PokeBattle_Move
 
   def pbAdditionalEffect(attacker,opponent)
     if !attacker.pbOpposingSide.effects[:StealthRock]
-      attacker.pbOpposingSide.effects[:StealthRock]=true
+      attacker.pbOpposingSide.effects[:StealthRock]=pbType(attacker)
       if !@battle.pbIsOpposing?(attacker.index)
         @battle.pbDisplay(_INTL("Pointed stones float in the air around your foe's team!"))
       else

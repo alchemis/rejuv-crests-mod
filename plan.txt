@@ -1,12 +1,13 @@
 Fossil crests (change the pokemon's rock type for something else plus another effect):
 Done: 
 Aurorus Dragon type + Aurora veil on entry if hail present
-
+cradily water, ingrain and raises defenses
+tyrantrum fire type, sunny day
 
 Not done:
-tyrantrum fire type, sunny day
+
 kabutops bug, boosts water and bug moves in rain, sharpness
-cradily water, ingrain and raises defenses
+
 armaldo steel, spdef 1.5x and lefties
 carracosta, steel, swaps defense and speed when using shell smash, uses metal burst if using another move
 omastar arceus lite
