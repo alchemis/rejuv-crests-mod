@@ -10044,6 +10044,24 @@ ITEMHASH = {
 	:noUseInBattle => true,
 	:noUse => true,
 },
+:TYRACREST => {
+	:ID => 1702, 
+	:name => "Tyrantrum Crest",
+	:desc => "It changes Tyrantum's Rock type to Fire and summons Sunny day upon entering the battlefield.",
+	:price => 0,
+	:crest => true,
+	:noUseInBattle => true,
+	:noUse => true,
+},
+:CRADCREST => {
+	:ID => 1703, 
+	:name => "Cradily Crest",
+	:desc => "It changes Cradily's Rock type to Water, boosts its defenses and Ingrains when entering the battlefield.",
+	:price => 0,
+	:crest => true,
+	:noUseInBattle => true,
+	:noUse => true,
+},
 :KLINCREST => {
 	:ID => 1900,
 	:name => "Klinklang Crest",
@@ -10071,3 +10089,4 @@ ITEMHASH = {
 	:noUseInBattle => true,
 	:noUse => true,
 },
+}

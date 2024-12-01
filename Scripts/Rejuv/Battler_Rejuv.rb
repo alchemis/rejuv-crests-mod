@@ -206,6 +206,10 @@ class PokeBattle_Battler
         case @crested
         when :AURORUS
           @type1 = :DRAGON
+        when :CRADILY
+          @type1 = :WATER
+        when :TYRANTRUM
+          @type1 = :FIRE
         end
       end
       

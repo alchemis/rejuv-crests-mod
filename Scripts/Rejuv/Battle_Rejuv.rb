@@ -11,6 +11,27 @@
     return if !@battlers[index].crested
     pbCrestEntry(index,pokemon)
     case @battlers[index].crested
+    when :CRADILY
+
+      if @battlers[index].pbCanIncreaseStatStage?(PBStats::DEFENSE)
+        @battlers[index].pbIncreaseStat(PBStats::DEFENSE,1)
+      end
+      if @battlers[index].pbCanIncreaseStatStage?(PBStats::SPDEF)
+        @battlers[index].pbIncreaseStat(PBStats::SPDEF,1)
+      end
+      pbAnimation(:INGRAIN,@battlers[index],nil)
+      @battlers[index].effects[:Ingrain]=true
+      @battle.pbDisplay(_INTL("{1} planted its roots!",@battlers[index].pbThis))
+
+    when :TYRANTRUM
+      if @weather!=:SUNNYDAY
+        @weather=:SUNNYDAY
+        @weatherduration=5
+        @weatherduration=8 if  @field.effect == :DESERT || @field.effect == :MOUNTAIN || @field.effect == :SNOWYMOUNTAIN || @field.effect == :SKY
+        pbCommonAnimation("Sunny",nil,nil)
+        pbDisplay(_INTL("{1}'s Sunny Day intensified the sun's rays!",@battlers[index].pbThis))
+        @battlers[index].pbCheckForm
+      end
     when :AURORUS
       #code below is copy pasted from aurora veil move effect
       if @battlers[index].pbOwnSide.effects[:AuroraVeil]>0 || ((@battle.weather!=:HAIL ||

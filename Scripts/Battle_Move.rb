@@ -174,7 +174,8 @@ class PokeBattle_Move
         when :LUXRAY  then type=:ELECTRIC   if type==:NORMAL
         #Fossils
         when :AURORUS then type=:DRAGON if type==:ROCK
-
+        when :CRADILY then type=:WATER if type==:ROCK
+        when :TYRANTRUM then type=:FIRE if type==:ROCK
         #End fossils
         when :SAWSBUCK
           case attacker.form
@@ -1574,6 +1575,8 @@ class PokeBattle_Move
         end
       #Fossil crest BOOSTS
       when :AURORUS then basemult*=1.2 if @type == :ROCK && type == :DRAGON
+      when :CRADILY then basemult*=1.2 if @type == :ROCK && type == :WATER
+      when :TYRANTRUM then basemult*=1.2 if @type == :ROCK && type == :FIRE
       #end fossil crests
     end
     #type mods
