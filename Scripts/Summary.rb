@@ -79,6 +79,92 @@ class PokemonSummaryScene
     pbUpdateSpriteHash(@sprites)
   end
 
+  def getModifiedStatsByCrest(pokemon)
+        #method to display modified stats by crests
+        #crest changes have to be manually added here unless i can figure something hacky out
+        #still useful, i guess
+        #only handles the simple ones, at least for now
+        #should update this when changing crestStats in Battler_Rejuv.rb
+
+        stats = {
+          :hp => pokemon.hp,
+          :totalhp => pokemon.totalhp,
+          :attack => pokemon.attack,
+          :defense => pokemon.defense,
+          :spatk => pokemon.spatk,
+          :spdef => pokemon.spdef,
+          :speed => pokemon.speed,
+        }
+
+        return stats unless PBStuff::POKEMONTOCREST[pokemon.species]==pokemon.item
+
+        case pokemon.species
+        when :INFERNAPE
+          stats[:attack],stats[:defense] = stats[:defense],stats[:attack]
+          stats[:spatk],stats[:spdef] = stats[:spdef],stats[:spatk]
+        when :MAGCARGO
+          stats[:defense],stats[:speed] = stats[:speed],stats[:defense]
+          stats[:spatk] *= 1.1
+        when :TYPHLOSION
+          stats[:attack] = stats[:spatk]
+        when :CLAYDOL
+          stats[:spatk] = stats[:defense]
+        when :DEDENNE
+          stats[:attack] = stats[:speed]
+        when :RELICANTH
+          stats[:attack] *=1.2
+          stats[:spdef] *= 1.3
+        when :SKUNTANK
+          stats[:attack] *=1.2
+          stats[:spatk] *= 1.2
+        when :HYPNO
+          stats[:spatk] *= 1.5
+        when :STANTLER, :WYRDEER
+          stats[:attack] *= 1.5
+        when :ORICORIO
+          stats[:spatk] *= 1.25
+          stats[:speed] *= 1.25
+        when :SEVIPER
+          stats[:speed] *=1.5
+        when :DUSKNOIR
+          stats[:attack] *= 1.5
+        when :COFAGRIGUS
+          stats[:spatk] *=1.25
+          stats[:spdef] *= 1.25
+        when :ARIADOS
+          stats[:speed] *= 1.5
+        when :PHIONE
+          stats[:defense] *= 1.5
+          stats[:spdef] *= 1.5
+        when :WHISCASH
+          stats[:attack] *= 1.2
+          stats[:spatk] *= 1.2
+        when :NOCTOWL
+          stats[:defense] *= 1.2
+        when :CRABOMINABLE
+          stats[:defense] *= 1.2
+          stats[:spdef] *= 1.2
+        when :SIMISAGE
+          stats[:attack] *= 1.2
+          stats[:spatk] *= 1.2
+        when :SIMISEAR
+          stats[:attack] *= 1.2
+          stats[:spatk] *= 1.2
+        when :SIMIPOUR
+          stats[:attack] *= 1.2
+          stats[:spatk] *= 1.2
+        when :CRYOGONAL
+          stats[:spdef] *= 1.2
+          stats[:attack] += stats[:spdef] * 0.1
+          stats[:defense] += stats[:spdef] * 0.1
+          stats[:spatk] += stats[:spdef] * 0.1
+          stats[:speed] += stats[:spdef] * 0.1
+        when :MAWILE
+          stats[:spatk] += stats[:attack]
+        end
+        return stats 
+  end
+
   def pbStartScene(party,partyindex)
     @viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
     @viewport.z=99999
@@ -509,7 +595,9 @@ class PokemonSummaryScene
     drawMarkings(overlay,15,291,72,20,pokemon.markings)
   end
 
+
   def drawPageThree(pokemon)
+    stats = getModifiedStatsByCrest(pokemon)
     overlay=@sprites["overlay"].bitmap
     overlay.clear
     @sprites["background"].setBitmap("Graphics/Pictures/Summary/summary3")
@@ -551,17 +639,17 @@ class PokemonSummaryScene
        [_INTL("Item"),16,320,0,LightBase,LightShadow],
        [itemname,16,352,0,DarkBase,DarkShadow],
        [_INTL("HP"),292,76,2,LightBase,LightShadow],
-       [sprintf("%3d/%3d",pokemon.hp,pokemon.totalhp),462,76,1,DarkBase,DarkShadow],
+       [sprintf("%3d/%3d",stats[:hp],stats[:totalhp]),462,76,1,DarkBase,DarkShadow],
        [_INTL("Attack"),248,120,0,LightBase,statshadows[PBStats::ATTACK]],
-       [sprintf("%d",pokemon.attack),456,120,1,DarkBase,DarkShadow],
+       [sprintf("%d",stats[:attack]),456,120,1,DarkBase,DarkShadow],
        [_INTL("Defense"),248,152,0,LightBase,statshadows[PBStats::DEFENSE]],
-       [sprintf("%d",pokemon.defense),456,152,1,DarkBase,DarkShadow],
+       [sprintf("%d",stats[:defense]),456,152,1,DarkBase,DarkShadow],
        [_INTL("Sp. Atk"),248,184,0,LightBase,statshadows[PBStats::SPATK]],
-       [sprintf("%d",pokemon.spatk),456,184,1,DarkBase,DarkShadow],
+       [sprintf("%d",stats[:spatk]),456,184,1,DarkBase,DarkShadow],
        [_INTL("Sp. Def"),248,216,0,LightBase,statshadows[PBStats::SPDEF]],
-       [sprintf("%d",pokemon.spdef),456,216,1,DarkBase,DarkShadow],
+       [sprintf("%d",stats[:spdef]),456,216,1,DarkBase,DarkShadow],
        [_INTL("Speed"),248,248,0,LightBase,statshadows[PBStats::SPEED]],
-       [sprintf("%d",pokemon.speed),456,248,1,DarkBase,DarkShadow],
+       [sprintf("%d",stats[:speed]),456,248,1,DarkBase,DarkShadow],
        [_INTL("Ability"),224,284,0,LightBase,LightShadow],
        [abilityname,362,284,0,DarkBase,DarkShadow],
     ]

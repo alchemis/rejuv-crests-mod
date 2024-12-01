@@ -10026,4 +10026,13 @@ ITEMHASH = {
 	:noUseInBattle => true,
 	:noUse => true,
 },
+:MAWCREST => {
+	:ID => 1700, #(lyra) putting my crests from 1700 onwards to prevent conflicts
+	:name => "Mawile Crest",
+	:desc => "It adds Mawile's Attack stat to it's Sp. Attack stat.",
+	:price => 0,
+	:crest => true,
+	:noUseInBattle => true,
+	:noUse => true,
+},
 }
