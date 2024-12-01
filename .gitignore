@@ -25,11 +25,12 @@ RGSS104E.dll
 x64-msvcrt-ruby300.dll
 rubyscreen.dll
 Data/*
-!Data/Mods
-!Data/Mods/*
-
-
-
+Data/Mods
+Data/Mods/*
+Field_Effect_Manual.txt
+ReadMe(CREDITS!).txt
+*.dll
+*.yaml
 !Data/!script_order.csv
 
 
