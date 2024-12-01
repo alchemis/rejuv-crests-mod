@@ -298,6 +298,11 @@ class PokeBattle_Battler
           @speed += @spdef * 0.1
         when :MAWILE
           @spatk += @attack
+        when :KLINKLANG
+          @spatk += @attack * 0.5
+        when :ARBOK
+          @defense *= 1.3
+          @spdef *= 1.3
         when :ZOROARK
           blacklist = PBStuff::ABILITYBLACKLIST - [:STANCECHANGE,:TRACE]
           party = @battle.pbPartySingleOwner(@index)

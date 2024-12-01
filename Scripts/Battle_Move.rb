@@ -1111,6 +1111,11 @@ class PokeBattle_Move
         if !($game_switches[:Inversemode] ^ (@battle.FE == :INVERSE))
           typemod = 16 / typemod if typemod != 0
         end
+      when :DRAPION
+        typemod /=2 if (type = :FIGHTING || type = :GROUND || type = :GRASS)
+      when :ARBOK
+        typemod /= 2 if (type == :GHOST || type == :DARK)
+        typemod = 0 if type == :PSYCHIC 
       end
     end
     typemod *= 4 if @move == :FREEZEDRY && opponent.hasType?(:WATER)
@@ -1304,8 +1309,8 @@ class PokeBattle_Move
     if attacker.hasWorkingItem(:WIDELENS)
       accuracy*=1.1
     end
-    # Hypno Crest, Stantler Crest
-    if [:HYPNO,:STANTLER,:WYRDEER].include?(attacker.crested)
+    # Hypno Crest, Stantler Crest, Klinklang Crest
+    if [:HYPNO,:STANTLER,:WYRDEER,:KLINKLANG].include?(attacker.crested)
       accuracy *= 1.5
     end
     if attacker.hasWorkingItem(:ZOOMLENS) && attacker.speed < opponent.speed
@@ -1358,6 +1363,7 @@ class PokeBattle_Move
     return 3 if (opponent.ability == :RATTLED || opponent.ability == :WIMPOUT) && @battle.FE == :COLOSSEUM
     return 3 if attacker.crested == :ARIADOS && (opponent.status == :POISON || opponent.stages[PBStats::SPEED] < 0) # ariados crest
     return 3 if (attacker.ability == :QUICKDRAW && attacker.effects[:QuickDrawSnipe])
+    return 3 if attacker.crested == :DRAPION && (opponent.status == :POISON ) # drapion crest
     c=0    
     c+=attacker.effects[:FocusEnergy]
     c+=1 if !@data.nil? && highCritRate?
@@ -2157,6 +2163,8 @@ class PokeBattle_Move
       when :SIMISEAR then typecrest = true if type == :WATER
       when :SIMIPOUR then typecrest = true if type == :GRASS
       when :SIMISAGE then typecrest = true if type == :FIRE
+      when :DRAPION then typecrest = true if type == :BUG
+      when :ARBOK then typecrest = true if type == :DARK
       when :ZOROARK
         party = @battle.pbPartySingleOwner(attacker.index)
         party=party.find_all {|item| item && !item.egg? && item.hp>0 }
