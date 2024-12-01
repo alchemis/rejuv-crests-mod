@@ -10045,7 +10045,7 @@ ITEMHASH = {
 	:noUse => true,
 },
 :KLINCREST => {
-	:ID => 1702,
+	:ID => 1900,
 	:name => "Klinklang Crest",
 	:desc => "Adds half of Klinklang's Attack to its Special Attack and boosts its Accuracy by 50%.",
 	:price => 0,
@@ -10054,7 +10054,7 @@ ITEMHASH = {
 	:noUse => true,
 },
 :ARBOCREST => {
-	:ID => 1703,
+	:ID => 1901,
 	:name => "Arbok Crest",
 	:desc => "Gains Dark-type STAB and Resistances. Boosts Defense and Special Defense by 30%.",
 	:price => 0,
@@ -10063,7 +10063,7 @@ ITEMHASH = {
 	:noUse => true,
 },
 :DRAPCREST => {
-	:ID => 1704,
+	:ID => 1902,
 	:name => "Drapion Crest",
 	:desc => "Gains Bug-type STAB and Resistances. Deals critical hits against poisoned targets.",
 	:price => 0,
