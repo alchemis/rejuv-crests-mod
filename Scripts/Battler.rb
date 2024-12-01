@@ -418,7 +418,7 @@ class PokeBattle_Battler
     @item         = pkmn.item
     @crested = hasCrest? ? pkmn.species : false
     crestStats if @crested
-
+    crestTypes if @crested
     @startform = @form
     if Rejuv
       @battle.ai.aimondata[index].skill = 100 if pkmn.isbossmon
@@ -539,6 +539,7 @@ class PokeBattle_Battler
     @spatk     = @pokemon.spatk
     @spdef     = @pokemon.spdef
     crestStats if @crested
+    
     @spdef, @defense = @defense, @spdef if @wonderroom
     @attack, @defense = @defense, @attack if @effects[:PowerTrick]
     return if !fullchange
@@ -548,6 +549,7 @@ class PokeBattle_Battler
     @ability = @pokemon.ability if !@ability.nil? && !((@crested == :SILVALLY || @crested == :ZOROARK))
     @type1   = @pokemon.type1
     @type2   = @pokemon.type2
+    crestTypes if @crested
   end
 
   def pbInitialize(pkmn,index,batonpass)

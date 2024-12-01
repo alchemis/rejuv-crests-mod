@@ -201,6 +201,14 @@ class PokeBattle_Battler
       return
     end
 
+      def crestTypes
+        #made a separate function for types to make things a bit neater, it gets called immediately after crestStats
+        case @crested
+        when :AURORUS
+          @type1 = :DRAGON
+        end
+      end
+      
       def crestStats
         case @crested
         when :SILVALLY

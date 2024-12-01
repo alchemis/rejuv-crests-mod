@@ -172,6 +172,10 @@ class PokeBattle_Move
         when :SIMIPOUR  then type=:GRASS  if type==:NORMAL
         when :SIMISAGE  then type=:FIRE   if type==:NORMAL
         when :LUXRAY  then type=:ELECTRIC   if type==:NORMAL
+        #Fossils
+        when :AURORUS then type=:DRAGON if type==:ROCK
+
+        #End fossils
         when :SAWSBUCK
           case attacker.form
             when 0  then type=:WATER  if type==:NORMAL
@@ -1518,6 +1522,7 @@ class PokeBattle_Move
       when :TERAVOLT      then basemult*=1.5 if (Rejuv && @battle.FE == :ELECTERRAIN && type == :ELECTRIC)
       when :INEXORABLE    then basemult*=1.3 if type == :DRAGON && (!opponent.hasMovedThisRound? || @battle.switchedOut[opponent.index])
     end
+
     case opponent.ability
       when :HEATPROOF     then basemult*=0.5 if !(opponent.moldbroken) && type == :FIRE
       when :DRYSKIN       then basemult*=1.25 if !(opponent.moldbroken) && type == :FIRE
@@ -1561,6 +1566,9 @@ class PokeBattle_Move
         when 2 then basemult*=1.2 if @type == :NORMAL && type == :GROUND
         when 3 then basemult*=1.2 if @type == :NORMAL && type == :ICE
         end
+      #Fossil crest BOOSTS
+      when :AURORUS then basemult*=1.2 if @type == :ROCK && type == :DRAGON
+      #end fossil crests
     end
     #type mods
     case type

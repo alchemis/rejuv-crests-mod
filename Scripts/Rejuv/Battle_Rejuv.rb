@@ -11,6 +11,21 @@
     return if !@battlers[index].crested
     pbCrestEntry(index,pokemon)
     case @battlers[index].crested
+    when :AURORUS
+      #code below is copy pasted from aurora veil move effect
+      if @battlers[index].pbOwnSide.effects[:AuroraVeil]>0 || ((@battle.weather!=:HAIL ||
+        @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE)) &&
+        !([:DARKCRYSTALCAVERN,:RAINBOW,:ICY,:CRYSTALCAVERN,:SNOWYMOUNTAIN,:MIRROR,:STARLIGHT,:FROZENDIMENSION].include?(@battle.FE)))
+      end
+      pbAnimation(:AURORAVEIL,@battlers[index],nil) #need to use pbAnimation here
+      @battlers[index].pbOwnSide.effects[:AuroraVeil]=5
+      @battlers[index].pbOwnSide.effects[:AuroraVeil]=8 if @battle.FE == :MIRROR
+      if !@battle.pbIsOpposing?(@battlers[index].index)
+        @battle.pbDisplay(_INTL("An Aurora is protecting your team!"))
+      else
+        @battle.pbDisplay(_INTL("An Aurora is protecting the opposing team!"))
+      end
+
     when :CASTFORM
       leadmove=@battlers[index].moves.first
       movedata = $cache.moves[leadmove.move].function

@@ -1,0 +1,21 @@
+Fossil crests (change the pokemon's rock type for something else plus another effect):
+Done: Aurorus Dragon type + Aurora veil on entry if hail present
+
+Not done:
+tyrantrum fire type, sunny day
+kabutops bug, boosts water and bug moves in rain, sharpness
+cradily water, ingrain and raises defenses
+armaldo steel, spdef 1.5x and lefties
+carracosta, steel, swaps defense and speed when using shell smash, uses metal burst if using another move
+omastar arceus lite
+
+other:
+done:
+Mawile crest: adds Atk to SpA
+
+not done
+dewgong.. idk
+gourgeist becomes lit when fire type moves hit or are used
+drapion bug stab/resistances, merciless
+klinklang 1.5x acc, half atk added to spA
+arbok dark stab/res, def/spdef 1.3x

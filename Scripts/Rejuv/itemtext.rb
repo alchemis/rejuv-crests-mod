@@ -10035,4 +10035,13 @@ ITEMHASH = {
 	:noUseInBattle => true,
 	:noUse => true,
 },
+:AUROCREST => {
+	:ID => 1701, 
+	:name => "Aurorus Crest",
+	:desc => "It changes Aurorus' Rock type to Dragon and creates Aurora Veil on entry if Hail is present.",
+	:price => 0,
+	:crest => true,
+	:noUseInBattle => true,
+	:noUse => true,
+},
 }
