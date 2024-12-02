@@ -174,7 +174,6 @@ class PokeBattle_Move
         when :LUXRAY  then type=:ELECTRIC   if type==:NORMAL
         #Fossils
         when :AURORUS then type=:DRAGON if type==:ROCK
-
         #End fossils
         when :SAWSBUCK
           case attacker.form
@@ -184,7 +183,7 @@ class PokeBattle_Move
             when 3  then type=:ICE    if type==:NORMAL 
           end
         when :HELIOLISK
-          case @ability
+          case attacker.ability
             when :DRYSKIN then type=:WATER if type==:NORMAL
             when :SANDVEIL then type=:ROCK if type==:NORMAL
             when :SOLARPOWER then type=:FIRE if type==:NORMAL
@@ -1579,7 +1578,7 @@ class PokeBattle_Move
          when 3 then basemult*=1.2 if @type == :NORMAL && type == :ICE
         end
       when :HELIOLISK
-        case @ability
+        case attacker.ability
          when :DRYSKIN then basemult*=1.2 if @type == :NORMAL && type == :WATER
          when :SANDVEIL then basemult*=1.2 if @type == :NORMAL && type == :ROCK
          when :SOLARPOWER then basemult*1.2 if @type == :NORMAL && type == :FIRE

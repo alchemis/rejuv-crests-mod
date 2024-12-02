@@ -3537,7 +3537,7 @@ class PokeBattle_Battler
     itemname=getItemName(self.item)
     #non-berries go first!
     hpcure=false if @effects[:HealBlock]!=0
-    if hpcure && (self.item == :LEFTOVERS || (self.item == :BLACKSLUDGE && hasType?(:POISON)) || (self.crested == :INFERNAPE)) && self.hp!=self.totalhp
+    if hpcure && (self.item == :LEFTOVERS || (self.item == :BLACKSLUDGE && hasType?(:POISON)) || (self.crested == :INFERNAPE) || (self.crested == :ARMALDO)) && self.hp!=self.totalhp
       hpgain = self.totalhp/16
       hpgain = self.totalhp/8 if @battle.FE == :CORRUPTED && self.item == :BLACKSLUDGE
       pbRecoverHP((hpgain).floor,true)

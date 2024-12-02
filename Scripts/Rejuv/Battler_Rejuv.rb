@@ -206,10 +206,12 @@ class PokeBattle_Battler
         case @crested
         when :AURORUS
           @type1 = :DRAGON
+        when :ARMALDO
+          @type1 = :STEEL
         when :HELIOLISK
-          @type2 = :WATER if @ability = :DRYSKIN
-          @type2 = :ROCK if @ability = :SANDVEIL
-          @type2 = :FIRE if @ability = :SOLARPOWER
+          @type2 = :WATER if @ability == :DRYSKIN
+          @type2 = :ROCK if @ability == :SANDVEIL
+          @type2 = :FIRE if @ability == :SOLARPOWER
         end
       end
       
@@ -307,6 +309,8 @@ class PokeBattle_Battler
         when :ARBOK
           @defense *= 1.3
           @spdef *= 1.3
+        when :ARMALDO
+          @spdef *= 1.5
         when :ZOROARK
           blacklist = PBStuff::ABILITYBLACKLIST - [:STANCECHANGE,:TRACE]
           party = @battle.pbPartySingleOwner(@index)

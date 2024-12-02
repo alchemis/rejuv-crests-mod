@@ -1,13 +1,12 @@
 Fossil crests (change the pokemon's rock type for something else plus another effect):
 Done: 
 Aurorus Dragon type + Aurora veil on entry if hail present
-
+Armaldo: Changes Rock-typing to Steel + Sp.DEF x1.5 + Leftovers effect
 
 Not done:
 tyrantrum fire type, sunny day
 kabutops bug, boosts water and bug moves in rain, sharpness
 cradily water, ingrain and raises defenses
-armaldo steel, spdef 1.5x and lefties
 carracosta, steel, swaps defense and speed when using shell smash, uses metal burst if using another move
 omastar arceus lite
 
@@ -17,6 +16,7 @@ Mawile crest: adds Atk to SpA
 Drapion: Bug-type STAB and Resistances + merciless
 Klinglang: 1.5 acc and half its atk added to spatk
 Abrok: Dark-type STAB/Resistances + Def/Sp.Def 1.3x
+Heliolisk: Changes Normal-type to match its Ability, changes Normal moves to match as well with 1.2x power.
 
 not done
 dewgong.. idk
